@@ -48,8 +48,8 @@ Done!
 
 This makes a few assumptions about your Rails application.
 
-1. It uses Postgres as the database
-2. It runs on Ruby 2.1.0 or 2.1.1
+1. It uses Postgres as the database (you could easily configure it to use MySQL if preferred)
+2. It runs on Ruby 2.1.0 or 2.1.1 (easily configurable)
 3. It doesn't depend on sidekiq, or redis or resque.
 4. Your tests should use Poltergeist or PhantomJS instead of capybara-webkit or
 selenium
@@ -58,10 +58,18 @@ selenium
 custom bootstrap.sh file provided.
 6. Your github access key is `~/.ssh/id_rsa.pub`
 
+All these things can be altered by forking the repo and adding extra stuff into the playbook.
+
+For example:
+
+* to add MySQL you'd need to add a new mysql role and switch our the postgres role.
+* to change the Ruby version's available just add them to `provisioning/roles/ruby/defaults/main.yml`
+
 ## Troubleshooting
 
 * Occasionally the `vagrant up` command will fail to provision due to an ssh error. Simply run `BUILDBOX_ACCESS_TOKEN=<YOUR BUILDBOX ACCESS TOKEN HERE> vagrant provision` and it should fix itself.
 * Occasionally the buildbox agent won't do the next step after bundling. Just restart your build.
+* If you want to tweak something the playbook is designed to be either idempotent (and fast) or to check to see if steps are required.
 
 ## Credit
 
