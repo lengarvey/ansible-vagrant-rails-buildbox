@@ -20,7 +20,7 @@
   when: result|failed
 
 - name: Recreate cluster to be UTF8
-  command: service postgresql stop && pg_dropcluster --stop 9.3 main && pg_createcluster -e UTF8 9.3 main
+  shell: source /etc/profile.d/env.sh && service postgresql stop && pg_dropcluster --stop 9.3 main && pg_createcluster -e UTF8 9.3 main
   sudo: yes
   when: result|failed
 
