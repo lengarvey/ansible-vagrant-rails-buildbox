@@ -5,4 +5,5 @@
 
 - name: Install bundler into Ruby {{item}}
   shell: chruby-exec ruby-{{item}} -- gem install bundler
+    executable=/bin/bash
   with_items: ruby_versions

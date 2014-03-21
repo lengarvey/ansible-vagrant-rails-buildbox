@@ -10,3 +10,15 @@
 - name: install common deps. Build essential, libs and git
   shell: apt-get -y --force-yes install build-essential curl openssl libssl-dev git-core vim tklib zlib1g-dev libssl-dev libreadline-gplv2-dev libxml2 libxml2-dev libxslt1-dev
   sudo: yes
+
+- name: Configure ssh known hosts
+  template: src=known_hosts dest=/etc/ssh/ssh_known_hosts
+  sudo: yes
+
+- name: Set permission of ssh_known_hosts
+  command: chmod 644 /etc/ssh/ssh_known_hosts
+  sudo: yes
+
+- name: Comment out line which prevents loading bash profile by ssh
+  lineinfile: dest=~/.bashrc regexp='[ -z "$PS1" ] && return' line='# [ -z "$PS1" ] && return' state=present
+

@@ -1,0 +1,11 @@
+---
+- name: Install the buildbox install script
+  template: src=install.sh dest=/tmp/install.sh
+
+- name: Install the buildbox go agent
+  shell: bash /tmp/install.sh
+    creates=~/.buildbox/buildbox-agent
+
+- name: Link buildbox binaries
+  shell: ln -sf /home/vagrant/.buildbox/buildbox-agent /usr/local/bin && ln -sf /home/vagrant/.buildbox/buildbox-artifact /usr/local/bin
+  sudo: yes
