@@ -9,3 +9,11 @@
 - name: Link buildbox binaries
   shell: ln -sf /home/vagrant/.buildbox/buildbox-agent /usr/local/bin && ln -sf /home/vagrant/.buildbox/buildbox-artifact /usr/local/bin
   sudo: yes
+
+- name: Install BuildBox upstart script
+  template: src=buildbox-agent.conf.j2 dest=/etc/init/buildbox-agent.conf
+  sudo: yes
+
+- name: Start the buildbox service
+  command: service buildbox-agent restart
+  sudo: yes

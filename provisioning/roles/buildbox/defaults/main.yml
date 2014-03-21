@@ -1,0 +1,2 @@
+---
+buildbox_access_token: "{{ lookup('env','BUILDBOX_ACCESS_TOKEN') }}"
