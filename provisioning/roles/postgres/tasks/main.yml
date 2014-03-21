@@ -1,0 +1,36 @@
+---
+- name: Check Postgres is installed
+  command: which psql
+  register: result
+  ignore_errors: true
+
+- name: Add Postgres repo
+  shell: touch '/etc/apt/pgdg.list' && echo 'deb http://apt.postgresql.org/pub/repos/apt/ precise-pgdg main' > /etc/apt/sources.list.d/pgdg.list
+  sudo: yes
+  when: result|failed
+
+- name: Update apt
+  command: apt-get update
+  sudo: yes
+  when: result|failed
+
+- name: Installs Postgres
+  command: apt-get -y --force-yes -q install python-software-properties software-properties-common libpq-dev postgresql-9.3 postgresql-client-9.3 postgresql-contrib-9.3
+  sudo: yes
+  when: result|failed
+
+- name: Recreate cluster to be UTF8
+  command: service postgresql stop && pg_dropcluster --stop 9.3 main && pg_createcluster -e UTF8 9.3 main
+  sudo: yes
+  when: result|failed
+
+- name: Add our pg_hba.conf
+  template: src=pg_hba.conf.j2 dest=/etc/postgresql/9.3/main/pg_hba.conf
+  sudo: yes
+  when: result|failed
+
+- name: Restart Postgres
+  sudo: yes
+  command: service postgresql restart
+
+

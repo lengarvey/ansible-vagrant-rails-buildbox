@@ -1,0 +1,18 @@
+---
+- name: Check if ruby-install exists
+  command: which ruby-install
+  register: rb_install_result
+  ignore_errors: true
+
+- name: Download ruby-install
+  shell: wget -O ruby-install-0.4.1.tar.gz https://github.com/postmodern/ruby-install/archive/v0.4.1.tar.gz
+  when: rb_install_result|failed
+
+- name: unpack ruby-install
+  command: tar -xzvf ruby-install-0.4.1.tar.gz
+  when: rb_install_result|failed
+
+- name: install ruby-install
+  shell: cd ruby-install-0.4.1 && make install
+  sudo: yes
+  when: rb_install_result|failed

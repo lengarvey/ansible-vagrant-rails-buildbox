@@ -1,0 +1,12 @@
+---
+- name: Alias sh to bash
+  command: ln -sf /bin/bash /bin/sh
+  sudo: yes
+
+- name: apt update
+  command: apt-get update
+  sudo: yes
+
+- name: install common deps. Build essential, libs and git
+  shell: apt-get -y --force-yes install build-essential curl openssl libssl-dev git-core vim tklib zlib1g-dev libssl-dev libreadline-gplv2-dev libxml2 libxml2-dev libxslt1-dev
+  sudo: yes

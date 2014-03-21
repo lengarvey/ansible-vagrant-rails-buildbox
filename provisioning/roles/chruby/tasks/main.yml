@@ -1,0 +1,14 @@
+---
+- name: Checks to see if chruby is installed
+  shell: chruby
+  register: chruby_result
+  ignore_errors: true
+
+- name: Install chruby
+  shell: wget -O chruby-0.3.8.tar.gz https://github.com/postmodern/chruby/archive/v0.3.8.tar.gz && tar -xzvf chruby-0.3.8.tar.gz && cd chruby-0.3.8/ && sudo make install
+  when: chruby_result|failed
+
+- name: Configure chruby
+  template: src=chruby.sh.j2 dest=/etc/profile.d/chruby.sh
+  sudo: yes
+  when: chruby_result|failed
