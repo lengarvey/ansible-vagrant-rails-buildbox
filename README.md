@@ -65,9 +65,9 @@ custom bootstrap.sh file provided.
 
 ## Credit
 
-Much credit goes to BuildBox for providing a Docker file which I cribbed most of the Ansible playbook from.
+Much credit goes to BuildBox for providing a [Docker file](https://github.com/buildboxhq/buildbox-docker/blob/master/Dockerfile) which I cribbed most of the Ansible playbook from.
 
-Also reInteractive has provided me the time to work on Open source stuff and learning on Fridays. Which is pretty fantastic.
+Also [reInteractive](http://reinteractive.net) has provided me the time to work on Open source stuff and learning on Fridays. Which is pretty fantastic. If you're a Rails developer or designer in Australia and looking for a good place to work. Talk to me: [@lgarvey](https://twitter.com)
 
 ## TODO:
 
