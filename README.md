@@ -18,7 +18,7 @@ go!**
 
 1. Sign up to Buildbox at https://buildbox.io/signup
 2. Click the "Create an Agent" button to make your agent
-   ![create an agent](https://www.dropbox.com/s/w227khcx7yity7q/Screenshot%202014-03-21%2014.53.08.png)
+   ![create an agent](http://imgur.com/Y0IGzF2)
    and record the access token provided
 3. Configure your project settings and set the Script Path to `./bin/buildbox-run`. You'll need to add this script to your repository too.
    this script specifies the commands to run your test suite. So something like:
