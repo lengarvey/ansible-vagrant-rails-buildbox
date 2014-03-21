@@ -1,0 +1,4 @@
+---
+- name: Setup RAILS_END
+  template: src=rails_env.j2 dest=/etc/profile.d/rails_env.sh
+  sudo: yes

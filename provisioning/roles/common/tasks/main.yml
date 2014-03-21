@@ -22,3 +22,12 @@
 - name: Comment out line which prevents loading bash profile by ssh
   lineinfile: dest=~/.bashrc regexp='[ -z "$PS1" ] && return' line='# [ -z "$PS1" ] && return' state=present
 
+- name: Setup some basic env vars
+  template: src=env.j2 dest=/etc/profile.d/env.sh
+  sudo: yes
+
+- name: Copy your private key to the server
+  copy: src=~/.ssh/id_rsa dest=~/.ssh/id_rsa mode=0600
+
+- name: Copy your public key to the server
+  copy: src=~/.ssh/id_rsa.pub dest=~/.ssh/id_rsa.pub mode=0600

@@ -22,15 +22,13 @@
 - name: Recreate cluster to be UTF8
   command: service postgresql stop && pg_dropcluster --stop 9.3 main && pg_createcluster -e UTF8 9.3 main
   sudo: yes
-  when: result|failed
+  # when: result|failed
 
 - name: Add our pg_hba.conf
   template: src=pg_hba.conf.j2 dest=/etc/postgresql/9.3/main/pg_hba.conf
   sudo: yes
-  when: result|failed
+  # when: result|failed
 
 - name: Restart Postgres
   sudo: yes
   command: service postgresql restart
-
-
