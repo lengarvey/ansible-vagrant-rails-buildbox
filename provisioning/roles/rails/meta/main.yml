@@ -1,3 +1,6 @@
 ---
 dependencies:
   - { role: ruby }
+  - { role: node }
+  - { role: imagemagick }
+  - { role: phantomjs }

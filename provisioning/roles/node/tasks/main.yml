@@ -1,0 +1,4 @@
+---
+- name: Install node
+  shell: apt-get install -y --force-yes python-software-properties && add-apt-repository -y ppa:chris-lea/node.js && apt-get update -y && apt-get install -y --force-yes nodejs
+  sudo: yes

@@ -1,0 +1,8 @@
+---
+- name: Install Ruby {{item}}
+  command: ruby-install ruby {{item}} creates=~/.rubies/ruby-{{item}}
+  with_items: ruby_versions
+
+- name: Install bundler into Ruby {{item}}
+  shell: chruby-exec ruby-{{item}} -- gem install bundler
+  with_items: ruby_versions

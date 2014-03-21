@@ -1,0 +1,4 @@
+---
+- name: Install imagemagick
+  shell: apt-get -y --force-yes -q install imagemagick libjpeg8-dev libpng12-dev
+  sudo: yes
